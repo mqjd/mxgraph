@@ -36,6 +36,7 @@ const mxObjects = [
 ];
 
 const externalJsPre = ["./mxClient.js"];
+
 const externalJsSuf = [
   "./ge/Editor.js",
   "./ge/Actions.js",
@@ -45,6 +46,9 @@ const externalJsSuf = [
   "./ge/Graph.js",
   "./ge/Shapes.js",
   "./shapes/mxBpmnShape2.js",
+
+  // 修改和增强mxGraph
+  "./adapter/Graph.js",
 ];
 
 module.exports = function (grunt) {
