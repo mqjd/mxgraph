@@ -26,6 +26,7 @@ function Sidebar(editorUi, container)
 		'labelPosition', 'outlineConnect'].concat(Graph.cellStyles);
 	
 	// Wrapper for entries and footer
+  /* 
 	this.container.style.overflow = 'visible';
 	this.wrapper = document.createElement('div');
 	this.wrapper.style.position = 'relative';
@@ -126,6 +127,7 @@ function Sidebar(editorUi, container)
 	this.editorUi.editor.graph.addListener(mxEvent.ESCAPE, this.escapeListener);
 	
 	this.init();
+  */ 
 };
 
 /**
@@ -3171,6 +3173,7 @@ Sidebar.prototype.disablePointerEvents = function(node)
 Sidebar.prototype.createDragSource = function(elt, dropHandler, preview, cells, bounds, startEditing)
 {
 	// Checks if the cells contain any vertices
+  var me = this;
 	var ui = this.editorUi;
 	var graph = ui.editor.graph;
 	var freeSourceEdge = null;
@@ -3292,7 +3295,7 @@ Sidebar.prototype.createDragSource = function(elt, dropHandler, preview, cells, 
 			arrow.setAttribute('title', tooltip);
 		}
 		
-		mxUtils.setOpacity(arrow, (img == this.refreshTarget) ? 30 : 20);
+		mxUtils.setOpacity(arrow, (img == me.refreshTarget) ? 30 : 20);
 		arrow.style.position = 'absolute';
 		arrow.style.cursor = 'crosshair';
 		

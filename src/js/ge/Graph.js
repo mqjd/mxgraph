@@ -271,7 +271,7 @@ mxImageShape.prototype.getImageDataUri = function()
 /**
  * Defines graph class.
  */
-Graph = function(container, model, renderHint, stylesheet, themes, standalone)
+const Graph = function(container, model, renderHint, stylesheet, themes, standalone)
 {
 	mxGraph.call(this, container, model, renderHint, stylesheet);
 	
@@ -1105,7 +1105,7 @@ Graph = function(container, model, renderHint, stylesheet, themes, standalone)
 			return me.sourceState;
 		};
 		
-		// Opens links in tooltips in new windows
+		// Opens links in tooltips in new __mxOutputs
 		var tooltipHandlerShow = this.tooltipHandler.show;
 		this.tooltipHandler.show = function()
 		{
@@ -2445,9 +2445,9 @@ DOMPurify.addHook('afterSanitizeAttributes', function(node)
  */
 Graph.domPurify = function(value, inPlace)
 {
-	window.DOM_PURIFY_CONFIG.IN_PLACE = inPlace;
+	DOM_PURIFY_CONFIG.IN_PLACE = inPlace;
 	
-	return DOMPurify.sanitize(value, window.DOM_PURIFY_CONFIG);
+	return DOMPurify.sanitize(value, DOM_PURIFY_CONFIG);
 };
 
 /**
@@ -2665,7 +2665,7 @@ Graph.prototype.maxFitScale = null;
 Graph.prototype.linkPolicy = (urlParams['target'] == 'frame') ? 'blank' : (urlParams['target'] || 'auto');
 
 /**
- * Target for links that open in a new window. Default is _blank.
+ * Target for links that open in a new __mxOutput. Default is _blank.
  */
 Graph.prototype.linkTarget = (urlParams['target'] == 'frame') ? '_self' : '_blank';
 
@@ -2837,7 +2837,7 @@ Graph.prototype.init = function(container)
 {
 	mxGraph.prototype.init.apply(this, arguments);
 
-	// Intercepts links with no target attribute and opens in new window
+	// Intercepts links with no target attribute and opens in new __mxOutput
 	this.cellRenderer.initializeLabel = function(state, shape)
 	{
 		mxCellRenderer.prototype.initializeLabel.apply(this, arguments);
@@ -3329,7 +3329,7 @@ Graph.prototype.init = function(container)
 				// Applies basic text styles for cells with text class
 				if (cell.style != null)
 				{
-					pairs = cell.style.split(';');
+					let pairs = cell.style.split(';');
 					isText = isText || mxUtils.indexOf(pairs, 'text') >= 0;
 				}
 				
@@ -4070,7 +4070,7 @@ Graph.prototype.customLinkClicked = function(link, associatedCell)
 
 /**
  * Returns true if the given href references an external protocol that
- * should never open in a new window. Default returns true for mailto.
+ * should never open in a new __mxOutput. Default returns true for mailto.
  */
 Graph.prototype.isExternalProtocol = function(href)
 {
@@ -4254,8 +4254,8 @@ Graph.prototype.createLayouts = function(list)
 		{
 			// Handles special case of branch optimizer in orgchart
 			var layout = (list[i].layout == 'mxOrgChartLayout' && list[i].config != null) ?
-				new window[list[i].layout](this, list[i].config['branchOptimizer']) :
-				new window[list[i].layout](this);
+				new __mxOutput[list[i].layout](this, list[i].config['branchOptimizer']) :
+				new __mxOutput[list[i].layout](this);
 
 			if (list[i].config != null)
 			{
@@ -6666,7 +6666,7 @@ Graph.prototype.zapGremlins = function(text)
 /**
  * Hover icons are used for hover, vertex handler and drag from sidebar.
  */
-HoverIcons = function(graph)
+const HoverIcons = function(graph)
 {
 	mxEventSource.call(this);
 	this.graph = graph;
@@ -13754,7 +13754,7 @@ if (typeof mxVertexHandler !== 'undefined')
 			}
 		};
 		
-		mxCellEditorGetInitialValue = mxCellEditor.prototype.getInitialValue;
+		const mxCellEditorGetInitialValue = mxCellEditor.prototype.getInitialValue;
 		mxCellEditor.prototype.getInitialValue = function(state, trigger)
 		{
 			if (mxUtils.getValue(state.style, 'html', '0') == '0')
@@ -13776,7 +13776,7 @@ if (typeof mxVertexHandler !== 'undefined')
 			}
 		};
 		
-		mxCellEditorGetCurrentValue = mxCellEditor.prototype.getCurrentValue;
+		const mxCellEditorGetCurrentValue = mxCellEditor.prototype.getCurrentValue;
 		mxCellEditor.prototype.getCurrentValue = function(state)
 		{
 			if (mxUtils.getValue(state.style, 'html', '0') == '0')
@@ -13902,7 +13902,7 @@ if (typeof mxVertexHandler !== 'undefined')
 		/**
 		 * Hold Alt to ignore drop target.
 		 */
-		mxGraphHandlerIsValidDropTarget = mxGraphHandler.prototype.isValidDropTarget;
+		const mxGraphHandlerIsValidDropTarget = mxGraphHandler.prototype.isValidDropTarget;
 		mxGraphHandler.prototype.isValidDropTarget = function(target, me)
 		{
 			return mxGraphHandlerIsValidDropTarget.apply(this, arguments) &&
@@ -15004,7 +15004,7 @@ if (typeof mxVertexHandler !== 'undefined')
 		mxEdgeHandler.prototype.labelHandleImage = HoverIcons.prototype.secondaryHandle;
 		mxOutline.prototype.sizerImage = HoverIcons.prototype.mainHandle;
 		
-		if (window.Sidebar != null)
+		if (__mxOutput.Sidebar != null)
 		{
 			Sidebar.prototype.triangleUp = HoverIcons.prototype.triangleUp;
 			Sidebar.prototype.triangleRight = HoverIcons.prototype.triangleRight;

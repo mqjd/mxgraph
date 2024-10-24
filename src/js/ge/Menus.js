@@ -4,7 +4,7 @@
 /**
  * Constructs a new graph editor
  */
-Menus = function(editorUi)
+const Menus = function(editorUi)
 {
 	this.editorUi = editorUi;
 	this.menus = new Object();

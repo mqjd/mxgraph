@@ -491,7 +491,7 @@ mxCodec.prototype.getConstructor = function(name)
 	{
 		if (this.isConstructorAllowed(name))
 		{
-			ctor = window[name];
+			ctor = __mxOutput[name];
 		}
 	}
 	catch (err)

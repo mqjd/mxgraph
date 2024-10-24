@@ -4,7 +4,7 @@
 /**
  * Constructs a new graph editor
  */
-EditorUi = function(editor, container, lightbox)
+const EditorUi = function(editor, container, lightbox)
 {
 	mxEventSource.call(this);
 	
@@ -110,6 +110,7 @@ EditorUi = function(editor, container, lightbox)
     // Creates the user interface
 	this.actions = new Actions(this);
 	this.menus = this.createMenus();
+	this.sidebar = new Sidebar(this);
 	
 	if (!graph.standalone)
 	{
@@ -197,7 +198,7 @@ EditorUi = function(editor, container, lightbox)
 		});
 		
 		this.createDivs();
-		this.createUi();
+		//this.createUi();
 		this.refresh();
 
 		// Disables HTML and text selection
@@ -4665,6 +4666,7 @@ EditorUi.prototype.updateActionStates = function()
 	this.actions.get('collapse').setEnabled(foldable);
 
 	// Updates menu states
+  /* 
     this.menus.get('navigation').setEnabled(ss.cells.length > 0 ||
 		graph.view.currentRoot != null);
     this.menus.get('layout').setEnabled(unlocked);
@@ -4676,6 +4678,7 @@ EditorUi.prototype.updateActionStates = function()
     this.menus.get('align').setEnabled(ss.unlocked &&
 		ss.cells.length > 0);
 
+    */
     this.updatePasteActionStates();
 };
 
@@ -4716,6 +4719,7 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 		}
 	}
 	
+  /* 
 	var effHsplitPosition = Math.max(0, Math.min(
 		this.hsplitPosition, w - this.splitSize - 40));
 	var tmp = 0;
@@ -4785,6 +4789,7 @@ EditorUi.prototype.refresh = function(sizeDidChange)
 	this.diagramContainer.style.right = fw + 'px';
 	this.diagramContainer.style.bottom = (this.footerHeight + off + th) + 'px';
 	
+  */ 
 	if (sizeDidChange)
 	{
 		this.editor.graph.sizeDidChange();
@@ -4802,7 +4807,8 @@ EditorUi.prototype.createTabContainer = function()
 /**
  * Creates the required containers.
  */
-EditorUi.prototype.createDivs = function()
+EditorUi.prototype.createDivs = function() {this.diagramContainer =this.container|| this.createDiv(geDiagramContainer);}
+EditorUi.prototype.createDivs1 = function()
 {
 	this.menubarContainer = this.createDiv('geMenubarContainer');
 	this.toolbarContainer = this.createDiv('geToolbarContainer');

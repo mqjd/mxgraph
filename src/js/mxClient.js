@@ -20,9 +20,9 @@ var mxClient =
 	 * 
 	 * versionMajor.versionMinor.buildNumber.revisionNumber
 	 * 
-	 * Current version is @MXGRAPH-VERSION@.
+	 * Current version is drawio@v24.7.17.
 	 */
-	VERSION: '@MXGRAPH-VERSION@',
+	VERSION: 'drawio@v24.7.17',
 
 	/**
 	 * Variable: IS_IE
@@ -557,7 +557,7 @@ else
 // Adds all required stylesheets and namespaces
 if (mxLoadStylesheets)
 {
-	mxClient.link('stylesheet', 'mxgraph/css/common.css');
+	mxClient.link('stylesheet', mxBasePath + "/css/common.css");
 }
 
 /**
@@ -585,7 +585,7 @@ if (typeof(mxLanguages) != 'undefined' && mxLanguages != null)
 // PREPROCESSOR-REMOVE-START
 // If script is loaded via CommonJS, do not write <script> tags to the page
 // for dependencies. These are already included in the build.
-if (mxForceIncludes || !(typeof module === 'object' && module.exports != null))
+if (mxForceIncludes )
 {
 // PREPROCESSOR-REMOVE-END
 	mxClient.include(mxClient.basePath + '/util/mxLog.js');
