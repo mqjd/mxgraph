@@ -1,0 +1,24 @@
+{
+  "name": "mgraph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/mgraph.min.js",
+  "scripts": {
+    "build": "grunt build --base ./ --gruntfile gruntfile.js",
+    "start": "bash package.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.6.1",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "load-grunt-tasks": "^5.1.0"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "mxgraph": "^4.2.2"
+  }
+}
